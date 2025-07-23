@@ -1,0 +1,95 @@
+{
+  "model": {
+    "encoder_name": "efficientnet-b4",
+    "encoder_weights": "imagenet",
+    "in_channels": 3,
+    "classes": 4,
+    "image_height": 256,
+    "image_width": 1600
+  },
+  "training": {
+    "batch_size": 12,
+    "epochs": 100,
+    "encoder_lr": 1e-5,
+    "decoder_lr": 1e-3,
+    "val_split": 0.2,
+    "weight_decay": 1e-4,
+    "patience": 20,
+    "min_lr": 1e-8,
+    "num_workers": 4,
+    "prefetch_factor": 2,
+    "use_balanced_data": true,
+    "use_class_weights": true,
+    "loss_type": "combined",
+    "dice_weight": 0.8,
+    "focal_weight": 0.2,
+    "mixed_precision": true,
+    "gradient_accumulation_steps": 1,
+    "gradient_clipping": true,
+    "max_grad_norm": 1.0,
+    "pin_memory": false,
+    "persistent_workers": false,
+    "compile_model": false,
+    "channels_last": true,
+    "resume_training": {
+      "enabled": true,
+      "checkpoint_path": "best_model.pth",
+      "auto_detect": true,
+      "fallback_paths": ["final_model.pth", "best_model.epoch51.pth"]
+    }
+  },
+  "debug": {
+    "enabled": true,
+    "dice_calculation": {
+      "enabled": false,
+      "max_batches": 3,
+      "show_tensor_stats": false,
+      "show_class_details": false,
+      "show_sample_details": false
+    },
+    "training_loop": {
+      "enabled": false,
+      "show_batch_stats": false,
+      "show_loss_components": false,
+      "show_memory_usage": false,
+      "check_gradients": false,
+      "check_model_outputs": false
+    },
+    "data_loading": {
+      "enabled": false,
+      "show_batch_info": false,
+      "show_augmentation_stats": false,
+      "validate_masks": false
+    },
+    "model_analysis": {
+      "enabled": false,
+      "show_layer_outputs": false,
+      "show_weight_stats": false,
+      "show_activation_stats": false
+    },
+    "save_debug_images": {
+      "enabled": false,
+      "save_every_n_batches": 50,
+      "max_images_per_batch": 2
+    }
+  },
+  "data": {
+    "seed": 42,
+    "augmentation": true,
+    "normalize": true,
+    "use_balanced_data": true,
+    "cache_dataset": true
+  },
+  "paths": {
+    "data_dir": "data",
+    "output_dir": "outputs",
+    "model_save_dir": "models"
+  },
+  "hardware": {
+    "gpu_memory_gb": 24,
+    "optimize_for_rtx5090": true,
+    "use_tf32": true,
+    "benchmark_cudnn": true,
+    "memory_fraction": 0.95
+  }
+}

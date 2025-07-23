@@ -1,0 +1,89 @@
+{
+  "model": {
+    "encoder_name": "efficientnet-b4",
+    "encoder_weights": "imagenet",
+    "in_channels": 3,
+    "classes": 4,
+    "encoder_lr": 2e-5,
+    "decoder_lr": 2e-4,
+    "image_height": 256,
+    "image_width": 1600,
+    "loss_type": "combined",
+    "dice_weight": 0.7,
+    "focal_weight": 0.3
+  },
+  "training": {
+    "batch_size": 12,
+    "epochs": 100,
+    "val_split": 0.2,
+    "weight_decay": 1e-4,
+    "patience": 15,
+    "min_lr": 1e-7,
+    "num_workers": 4,
+    "prefetch_factor": 2,
+    "use_balanced_data": true,
+    "loss_type": "combined",
+    "dice_weight": 0.7,
+    "focal_weight": 0.3,
+    "mixed_precision": true,
+    "gradient_accumulation_steps": 1,
+    "pin_memory": false,
+    "persistent_workers": false,
+    "compile_model": false,
+    "channels_last": true
+  },
+  "debug": {
+    "enabled": true,
+    "dice_calculation": {
+      "enabled": true,
+      "max_batches": 3,
+      "show_tensor_stats": true,
+      "show_class_details": true,
+      "show_sample_details": true
+    },
+    "training_loop": {
+      "enabled": true,
+      "show_batch_stats": true,
+      "show_loss_components": true,
+      "show_memory_usage": true,
+      "check_gradients": true,
+      "check_model_outputs": true
+    },
+    "data_loading": {
+      "enabled": true,
+      "show_batch_info": true,
+      "show_augmentation_stats": true,
+      "validate_masks": true
+    },
+    "model_analysis": {
+      "enabled": true,
+      "show_layer_outputs": false,
+      "show_weight_stats": true,
+      "show_activation_stats": true
+    },
+    "save_debug_images": {
+      "enabled": false,
+      "save_every_n_batches": 50,
+      "max_images_per_batch": 2
+    }
+  },
+  "data": {
+    "seed": 42,
+    "augmentation": true,
+    "normalize": true,
+    "use_balanced_data": true,
+    "cache_dataset": true
+  },
+  "paths": {
+    "data_dir": "data",
+    "output_dir": "outputs",
+    "model_save_dir": "models"
+  },
+  "hardware": {
+    "gpu_memory_gb": 24,
+    "optimize_for_rtx5090": true,
+    "use_tf32": true,
+    "benchmark_cudnn": true,
+    "memory_fraction": 0.95
+  }
+}

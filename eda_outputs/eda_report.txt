@@ -1,0 +1,26 @@
+Steel defect detection - Exploratory data analysis report
+==================================================
+
+Dataset basic information:
+Total records: 7,095
+Total images: 6,666
+Defect records: 7,095
+Defect classes: 4
+
+Defect class distribution:
+Class 1: 897 (12.6%)
+Class 2: 247 (3.5%)
+Class 3: 5,150 (72.6%)
+Class 4: 801 (11.3%)
+
+Key findings:
+- Dataset contains 4 different types of steel surface defects
+- Defect distribution is imbalanced, consider sampling strategies
+- Image sizes are relatively uniform, beneficial for model training
+- Some images contain multiple types of defects
+
+Recommendations:
+- Use weighted loss function to handle class imbalance
+- Apply data augmentation techniques to increase sample diversity
+- Consider using stratified sampling to ensure representative validation set
+- Implement multi-label classification strategy to handle multi-defect images
